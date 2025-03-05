@@ -13,7 +13,7 @@ pipeline {
         }
         stage ('createfile'){
             steps{
-                sh 'touch test-$BUILD_ID'
+                sh 'touch text-$BUILD_ID'
             }
         }
     }
