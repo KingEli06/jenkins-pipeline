@@ -9,6 +9,7 @@ pipeline {
         stage ('test'){
             steps{
                 sh 'echo "code scanned"'
+                sh 'cat /etc/os-release'
             }
         }
         stage ('createfile'){
