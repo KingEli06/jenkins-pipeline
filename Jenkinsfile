@@ -21,12 +21,12 @@ pipeline {
         }
         stage ('DockerImageTags'){
             steps{
-                sh 'docker tag jenkins-ci:latest 529088290671.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci:ary-tag'
+                sh 'docker tag jenkins-ci:latest 529088290671.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci:latest'
             }
         }
         stage ('pushImage'){
             steps{
-                sh 'docker push 529088290671.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci:ary-tag'
+                sh 'docker push 529088290671.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci:latest'
             }
         }
     }
