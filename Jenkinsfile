@@ -4,7 +4,7 @@ pipeline {
         stage ('clone'){
             steps{
                 sh 'echo "code cloned"'
-            }
+            })
         }
         stage ('test'){
             steps{
