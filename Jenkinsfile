@@ -5,8 +5,8 @@ pipeline {
             steps{
                 sh 'trivy --version'
                 sh 'trivy fs . -o result.html'
-                sh 'cta result.hmtl'
-                
+                sh 'cat result.hmtl'
+
             }
         }
         stage ('dockerImageBuild'){
