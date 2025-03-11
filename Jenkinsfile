@@ -1,3 +1,4 @@
+/*
 pipeline {
    agent any
 
@@ -44,3 +45,35 @@ pipeline {
     }
    } 
    }
+
+   */
+pipeline {
+    agent any 
+       stages
+         stage('CodeScan'){
+          steps{
+            sh 'trivy fs .  -o result.html'
+        }
+    }
+         stage ('DockerLogin'){
+            steps{
+              sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 529088290671.dkr.ecr.us-east-1.amazonaws.com'
+        }
+    }
+    stage ('DockerBuild'){
+            steps{
+              sh 'docker build -t jenkins_cicd .'
+        }
+   }
+   stage ('ImageTag'){
+            steps{
+              sh 'docker tag jenkins_cicd:latest 529088290671.dkr.ecr.us-east-1.amazonaws.com/jenkins_cicd:latest'
+        }
+   }
+   stage ('PushImage'){
+            steps{
+              sh 'docker push 529088290671.dkr.ecr.us-east-1.amazonaws.com/jenkins_cicd:latest'
+        }
+   }
+   
+}
