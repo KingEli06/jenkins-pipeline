@@ -4,6 +4,7 @@ pipeline {
         stage('CheckScan'){
             steps{
                 sh 'trivy --version'
+                sh 'trivy fs . -o result.html'
             }
         }
         stage('dockerImageBuild'){
